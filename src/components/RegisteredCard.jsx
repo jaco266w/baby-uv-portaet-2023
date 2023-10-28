@@ -17,7 +17,9 @@ export default function RegisteredCard(props) {
         },
         body: JSON.stringify({ offerSent: !offerSent }),
         }).then(() => {
-        setOfferSent(!offerSent);
+            console.log("offer sent");
+            setOfferSent(!offerSent);
+            window.location.reload();
         });
     };
 
@@ -29,8 +31,11 @@ export default function RegisteredCard(props) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ paid: !paid }),
-        }).then(() => {
-        setPaid(!paid);
+        })
+        .then(() => {
+            console.log("paid");
+            setPaid(!paid);
+            window.location.reload();
         });
     };
     
@@ -64,8 +69,8 @@ export default function RegisteredCard(props) {
                     </div>
                 </div>
                 <div>
-                    <p className={`capitalize mt-3 mb-4 ${offerSentStyle}`}>{props.offerSent}</p>
-                    <p className={`capitalize ${paidStyle}`}>{props.paid}</p>
+                    <p className={`capitalize mt-3 mb-5 text-end ${offerSentStyle}`}>{props.offerSent}</p>
+                    <p className={`capitalize -mb-2 text-end ${paidStyle}`}>{props.paid}</p>
                 </div>
             </div>
             <div className="grid grid-cols-2 mt-4">

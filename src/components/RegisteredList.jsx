@@ -19,7 +19,16 @@ export default function RegisteredList(props) {
                 return response.json();
             })
             .then(data => {
-                setRegistrations(data);
+                const sortedData = data.sort((a, b) => {
+                  if (a.firstName < b.firstName) {
+                    return -1;
+                  }
+                  if (a.firstName > b.firstName) {
+                    return 1;
+                  }
+                  return 0;
+                });
+                setRegistrations(sortedData);
             })
     }, []);
     console.log(registrations);
@@ -29,18 +38,19 @@ export default function RegisteredList(props) {
             {registrations && (
                 <p className="ml-6 text-gray-500 capitalize">antal tilmeldte: {registrations.length}</p>
             )}
-            <div className="w-full md:grid md:grid-cols-3 md:gap-4">
+            <div className="w-full md:grid md:grid-cols-1 md:gap-4">
             { registrations && (
                 registrations.length > 0 ? (
                     registrations.map(registration => (
                     <RegisteredCard
+                        key={registration.id}
                         id={registration.id}
                         firstName={registration.firstName}
                         lastName={registration.lastName}
                         email={registration.email}
                         babyName={registration.babyName}
                         trainingDay={registration.trainingDay}
-                        offerSent={registration.offerSent ===true ? "tilbud sendt" : "tilbud ikke sendt"}
+                        offerSent={registration.offerSent ===true ? "tilbud sendt" : "ikke sendt"}
                         paid={registration.paid ===true ? "betalt" : "ikke betalt"}
                     />
                 ))
