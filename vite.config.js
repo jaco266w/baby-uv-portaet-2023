@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import replace from '@rollup/plugin-replace'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,24 +19,13 @@ export default defineConfig({
       }
     }
   },
-  // Use the renderDynamicImport plugin hook to serve JavaScript files with the correct MIME type
+  // Use the @rollup/plugin-replace plugin to replace the __import__ function with the correct dynamic import function
   optimizeDeps: {
     include: ['react', 'react-dom'],
     plugins: [
-      {
-        name: 'renderDynamicImport',
-        async renderChunk(code, chunk) {
-          if (chunk.type === 'chunk') {
-            return {
-              code: code.replace(
-                /__import__\(/g,
-                'import.meta.ROLLUP_CHUNK_URL + '
-              )
-            }
-          }
-          return null
-        }
-      }
+      replace({
+        __import__: 'import.meta.ROLLUP_CHUNK_URL + '
+      })
     ]
   }
 })
