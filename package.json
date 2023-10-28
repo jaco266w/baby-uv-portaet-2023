@@ -2,7 +2,7 @@
   "name": "sign-up",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://jaco266w.github.io/sign-up/baby-uv-portaet-2023",
+  "homepage": "https://jaco266w.github.io/baby-uv-portaet-2023",
   "type": "module",
   "scripts": {
     "dev": "vite",
