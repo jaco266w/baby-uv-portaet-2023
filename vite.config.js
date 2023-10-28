@@ -14,13 +14,9 @@ export default defineConfig({
         // Serve JavaScript files with the correct MIME type
         format: 'es',
         entryFileNames: '[name]-[hash].js',
-        chunkFileNames: '[name]-[hash].js'
-      },
-      // Serve JavaScript files with the correct MIME type
-      outputOptions: {
-        mimeTypes: {
-          js: 'application/javascript'
-        }
+        chunkFileNames: '[name]-[hash].js',
+        // Add the following line to serve JavaScript files with the correct MIME type
+        dynamicImportFunction: '__import__'
       }
     }
   }
