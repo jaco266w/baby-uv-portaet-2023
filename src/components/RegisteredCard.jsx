@@ -1,6 +1,9 @@
 import { IconContext } from "react-icons";
 import { IoPersonOutline, IoCalendarOutline } from "react-icons/io5";
 import { FaBaby } from "react-icons/fa6";
+import { BiSolidOffer } from "react-icons/bi";
+import { MdPaid } from "react-icons/md";
+
 
 import { useState } from "react";
 
@@ -69,8 +72,18 @@ export default function RegisteredCard(props) {
                     </div>
                 </div>
                 <div>
-                    <p className={`capitalize mt-3 mb-5 text-end ${offerSentStyle}`}>{props.offerSent}</p>
-                    <p className={`capitalize -mb-2 text-end ${paidStyle}`}>{props.paid}</p>
+                    <div className="flex items-center mt-2 mb-4">
+                        <IconContext.Provider value={{size: 25}}>
+                            <BiSolidOffer />
+                        </IconContext.Provider>
+                        <p className={`capitalize ${offerSentStyle}`}>{props.offerSent}</p>
+                    </div>
+                    <div className="flex">
+                        <IconContext.Provider value={{size: 25}}>
+                            <MdPaid />
+                        </IconContext.Provider>
+                        <p className={`capitalize ${paidStyle}`}>{props.paid}</p>
+                    </div>
                 </div>
             </div>
             <div className="grid grid-cols-2 mt-4">

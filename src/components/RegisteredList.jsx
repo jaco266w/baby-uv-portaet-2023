@@ -1,4 +1,5 @@
 import RegisteredCard from "./RegisteredCard";
+import { PDFGenerator } from "./PDFGenerator";
 
 import { useEffect, useState } from "react";
 
@@ -6,7 +7,6 @@ export default function RegisteredList(props) {
 
     const [registrations, setRegistrations] = useState(null);
     const url = `https://nlmbwlvsavadhbzkqkie.supabase.co/rest/v1/BabyUndervandsPortraetter_2023?trainingDay=eq.${props.weekDay}`;
-    console.log(url);
 
     useEffect(() => {
         fetch(url, {
@@ -38,6 +38,7 @@ export default function RegisteredList(props) {
             {registrations && (
                 <p className="ml-6 text-gray-500 capitalize">antal tilmeldte: {registrations.length}</p>
             )}
+            {registrations && <PDFGenerator registrations={registrations} />}
             <div className="w-full md:grid md:grid-cols-1 md:gap-4">
             { registrations && (
                 registrations.length > 0 ? (

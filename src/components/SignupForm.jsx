@@ -32,6 +32,7 @@ export default function SignupForm() {
                 body: JSON.stringify(registration)
             }) .then(() => {
                 console.log("new registration added");
+                window.location.reload();
             })
         }
         
@@ -42,7 +43,7 @@ export default function SignupForm() {
         <div className="flex justify-center">
             <div className="m-5 md:my-20 p-5 md:p-20 bg-gray-200 shadow-2xl rounded-md">
                 <div className="max-w-lg w-full">
-                    <img className="w-60 mb-6" src="./src/assets/logo.webp" alt="" />
+                    <img className="w-60 mb-6" src="/assets/logo.webp" alt="Jacob Jørgensen Medieproduktion logo" />
                     <h1 className="bg-orange-400 text-white text-center py-4 text-lg mb-8 capitalize md:text-2xl">baby undervands portrætter 2023</h1>
                     <form className="flex flex-col" onSubmit={handleSubmit}>
                         <label className="flex ml-2 mb-2">
@@ -52,11 +53,11 @@ export default function SignupForm() {
                             <p className="text-red-500 self-end">*</p>
                         </label>
                         <div className="grid grid-rows-2 md:grid-rows-none md:grid-cols-2 gap-4">
-                            <input className="pl-1.5 py-1 border rounded-md font-light" type="text" placeholder="Mor/Far Fornavn" required 
+                            <input className="pl-2.5 py-2 border rounded-md font-light" type="text" placeholder="Mor/Far Fornavn" required 
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                             />
-                            <input className="pl-1.5 py-1 border rounded-md font-light" type="text" placeholder="Mor/Far Efternavn" required 
+                            <input className="pl-2.5 py-2 border rounded-md font-light" type="text" placeholder="Mor/Far Efternavn" required 
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                             />
@@ -67,7 +68,7 @@ export default function SignupForm() {
                             </IconContext.Provider>
                             <p className="text-red-500 self-end">*</p>
                         </label>
-                        <input className="pl-1.5 py-1 border rounded-md font-light" type="text" placeholder="Barnets Fornavn" required 
+                        <input className="pl-2.5 py-2 border rounded-md font-light" type="text" placeholder="Barnets Fornavn" required 
                             value={babyName}
                             onChange={(e) => setBabyName(e.target.value)}
                         />
@@ -77,7 +78,7 @@ export default function SignupForm() {
                             </IconContext.Provider>
                             <p className="text-red-500 self-end">*</p>
                         </label>
-                        <input className="pl-1.5 py-1 border rounded-md font-light" type="email" placeholder="Email" required 
+                        <input className="pl-2.5 py-2 border rounded-md font-light" type="email" placeholder="Email" required 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -87,7 +88,7 @@ export default function SignupForm() {
                             </IconContext.Provider>
                             <p className="text-red-500 self-end">*</p>
                         </label>
-                        <select className="pl-2 py-2 border bg-white rounded-md font-light"  required value={trainingDay} onChange={(e) => setTrainingDay(e.target.value)}>
+                        <select className="pl-3 py-3 border bg-white rounded-md font-light"  required value={trainingDay} onChange={(e) => setTrainingDay(e.target.value)}>
                             <option value="default" disabled>Vælg Undervisningsdag...</option>
                             <option value="Mandag">Mandag</option>
                             <option value="Tirsdag">Tirsdag</option>
