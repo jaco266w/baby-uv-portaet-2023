@@ -101,7 +101,7 @@ export default function SignupForm() {
                                 checked={consent === true}
                                 onChange={(e) => setConsent(true)}
                             />
-                            <label className="text-sm md:text-base" >Jeg acceptere følgende <a target="_blank" className="text-blue-700 underline" href="#">privatlivspolitik</a> ang. behandling af mine data, samt følgende <a target="_blank" className="text-blue-700 underline" href="#">samtykkeerklæring</a> ang. portræt-sessonien.</label>
+                            <label className="text-sm md:text-base" >Jeg acceptere følgende <a target="_blank" className="text-blue-700 underline" href="/assets/privatlivs-politik.pdf">privatlivspolitik</a> ang. behandling af mine data, samt følgende <a target="_blank" className="text-blue-700 underline" href="/assets/samtykke-erklaering_greve_2023.pdf">samtykkeerklæring</a> ang. portræt-sessonien.</label>
                         </div>
                         <button className="bg-orange-400 text-white text-lg rounded-md py-2 w-40 ml-auto mr-auto">Tilmeld</button>
                     </form>
