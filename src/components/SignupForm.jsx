@@ -1,7 +1,8 @@
 import { IconContext } from "react-icons";
-import { IoPersonOutline, IoCalendarOutline } from "react-icons/io5";
+import { IoPersonOutline } from "react-icons/io5";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaBaby } from "react-icons/fa6";
+import { PiNumberSquareSix } from "react-icons/pi";
 
 import { useState } from "react";
 
@@ -10,17 +11,13 @@ export default function SignupForm() {
     const [lastName, setLastName] = useState("");
     const [babyName, setBabyName] = useState("");
     const [email, setEmail] = useState("");
-    const [trainingDay, setTrainingDay] = useState("default");
+    const [parNumber, setParNumber] = useState('');
     const [consent, setConsent] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (trainingDay === "default") {
-            alert("Vælg venligst en undervisningsdag");
-            return;
-        }
-        else {
-            const registration = { firstName, lastName, babyName, email, trainingDay, consent };
+        
+            const registration = { firstName, lastName, babyName, email, parNumber, consent };
         
             fetch("https://nlmbwlvsavadhbzkqkie.supabase.co/rest/v1/BabyUndervandsPortraetter_2023", {
                 method: "POST",
@@ -34,9 +31,15 @@ export default function SignupForm() {
                 console.log("new registration added");
                 window.location.reload();
             })
+        };
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+        if (value === '' || (value.length <= 2 && !isNaN(value))) {
+          setParNumber(value);
         }
-        
-    };
+      };
+
 
 
     return (
@@ -84,22 +87,16 @@ export default function SignupForm() {
                         />
                         <label className="flex ml-2 mt-6 mb-2">
                             <IconContext.Provider value={{size: 30}}>
-                                <IoCalendarOutline />
+                                <PiNumberSquareSix />
                             </IconContext.Provider>
                             <p className="text-red-500 self-end">*</p>
                         </label>
-                        <select className="pl-3 py-3 border bg-white rounded-md font-light"  required value={trainingDay} onChange={(e) => setTrainingDay(e.target.value)}>
-                            <option value="default" disabled>Vælg Undervisningsdag...</option>
-                            <option value="Mandag">Mandag</option>
-                            <option value="Tirsdag">Tirsdag</option>
-                            <option value="Onsdag">Onsdag</option>
-                            <option value="Torsdag">Torsdag</option>
-                            <option value="Fredag">Fredag</option>
-                        </select>
+                        <input required className="pl-2.5 py-2 border rounded-md font-light" type="tel" value={parNumber} onChange={handleChange} placeholder="Deltager Nummer"/>
+                        <p className="italic text-sm ml-1">Deltager nummeret kan findes på det udleverede visitkort under QR Koden</p>
                         <div className="flex gap-2 my-6">
-                            <input required type="radio" 
+                            <input required type="checkbox" 
                                 checked={consent === true}
-                                onChange={(e) => setConsent(true)}
+                                onChange={(e) => setConsent((old) => !old)}
                             />
                             <label className="text-sm md:text-base" >Jeg acceptere følgende <a target="_blank" className="text-blue-700 underline" href="/assets/privatlivs-politik.pdf">privatlivspolitik</a> ang. behandling af mine data, samt følgende <a target="_blank" className="text-blue-700 underline" href="/assets/samtykke-erklaering_greve_2023.pdf">samtykkeerklæring</a> ang. portræt-sessonien.</label>
                         </div>
