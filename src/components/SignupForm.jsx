@@ -4,11 +4,15 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FaBaby } from "react-icons/fa6";
 import { PiNumberSquareSix } from "react-icons/pi";
 
+import { ClipLoader } from 'react-spinners';
+
 import { useState } from "react";
 
 import Modal from "./Modal";
 
 export default function SignupForm() {
+    const [isLoading, setIsLoading] = useState(false);
+    
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [babyName, setBabyName] = useState("");
@@ -18,6 +22,7 @@ export default function SignupForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsLoading(true);
         
             const registration = { firstName, lastName, babyName, email, parNumber, consent };
         
@@ -31,9 +36,13 @@ export default function SignupForm() {
                 body: JSON.stringify(registration)
             }) .then(() => {
                 console.log("new registration added");
-                document.getElementById('my_modal_3').showModal()
+                setTimeout(complete, 1000);
             })
         };
+    const complete = () => {
+        setIsLoading(false);
+        document.getElementById('my_modal_3').showModal()
+    };
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -103,7 +112,7 @@ export default function SignupForm() {
                                 />
                                 <label className="text-sm md:text-base" >Jeg acceptere følgende <a target="_blank" className="text-blue-700 underline" href="/assets/privatlivs-politik.pdf">privatlivspolitik</a> ang. behandling af mine data, samt følgende <a target="_blank" className="text-blue-700 underline" href="/assets/samtykke-erklaering_greve_2023.pdf">samtykkeerklæring</a> ang. portræt-sessonien.</label>
                             </div>
-                            <button className="bg-orange-400 text-white text-lg rounded-md py-2 w-40 ml-auto mr-auto">Modtag Faktura</button>
+                            <button className="bg-orange-400 text-white text-lg rounded-md py-2 w-40 ml-auto mr-auto">{isLoading ? <ClipLoader color="#ffffff" /> : 'Modtag Faktura'}</button>
                         </form>
                     </div>
                 </div>
