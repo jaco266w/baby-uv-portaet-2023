@@ -94,8 +94,8 @@ export default function SignupForm() {
                                 </IconContext.Provider>
                                 <p className="text-red-500 self-end">*</p>
                             </label>
-                            <input required className="pl-2.5 py-2 border rounded-md font-light" type="tel" value={parNumber} onChange={handleChange} placeholder="Deltager Nummer"/>
                             <p className="italic text-sm ml-1">Deltager nummeret kan findes på det udleverede visitkort under QR Koden</p>
+                            <input required className="pl-2.5 py-2 border rounded-md font-light" type="tel" value={parNumber} onChange={handleChange} placeholder="Deltager Nummer"/>
                             <div className="flex gap-2 my-6">
                                 <input required type="checkbox" 
                                     checked={consent === true}
@@ -103,7 +103,7 @@ export default function SignupForm() {
                                 />
                                 <label className="text-sm md:text-base" >Jeg acceptere følgende <a target="_blank" className="text-blue-700 underline" href="/assets/privatlivs-politik.pdf">privatlivspolitik</a> ang. behandling af mine data, samt følgende <a target="_blank" className="text-blue-700 underline" href="/assets/samtykke-erklaering_greve_2023.pdf">samtykkeerklæring</a> ang. portræt-sessonien.</label>
                             </div>
-                            <button className="bg-orange-400 text-white text-lg rounded-md py-2 w-40 ml-auto mr-auto">Tilmeld</button>
+                            <button className="bg-orange-400 text-white text-lg rounded-md py-2 w-40 ml-auto mr-auto">Modtag Faktura</button>
                         </form>
                     </div>
                 </div>
