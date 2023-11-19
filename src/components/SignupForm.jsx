@@ -46,7 +46,7 @@ export default function SignupForm() {
 
     return (
         <>
-            <div className="flex justify-center">
+            <div id="signUp" className="flex justify-center">
                 <div className="m-5 md:my-20 p-5 md:p-20 bg-gray-200 shadow-2xl rounded-md">
                     <div className="max-w-lg w-full">
                         <img className="w-60 mb-6" src="/assets/logo.webp" alt="Jacob Jørgensen Medieproduktion logo" />
