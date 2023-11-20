@@ -9,6 +9,7 @@ import { ClipLoader } from 'react-spinners';
 import { useState } from "react";
 
 import Modal from "./Modal";
+import FejlModal from "./FejlModal";
 
 export default function SignupForm() {
     const [isLoading, setIsLoading] = useState(false);
@@ -34,11 +35,17 @@ export default function SignupForm() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(registration)
-            }) .then(() => {
+            }) .then(response => {
+                if (!response.ok) {
+                    setIsLoading(false);
+                    document.getElementById('my_modal_2').showModal()
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 console.log("new registration added");
                 setTimeout(complete, 1000);
             })
         };
+    
     const complete = () => {
         setIsLoading(false);
         document.getElementById('my_modal_3').showModal()
@@ -118,6 +125,7 @@ export default function SignupForm() {
                 </div>
             </div>
             <Modal />
+            <FejlModal />
         </>
     );
 }
